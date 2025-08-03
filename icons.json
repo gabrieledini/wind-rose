@@ -1,10 +1,4 @@
 {
-  "name": "Rosa dei venti",
-  "short_name": "Venti",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#f0f0f0",
-  "theme_color": "#333333",
   "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",
