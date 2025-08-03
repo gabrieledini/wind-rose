@@ -35,7 +35,7 @@ function updateCompass(alpha) {
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
-  direction.textContent = `Direzione: ${Math.round(alpha)}°`;
+  direction.textContent = `Direzione: ${Math.round(rot)}°`;
 }
 
 function handleOrientation(e) {
