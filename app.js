@@ -32,11 +32,11 @@ function drawOverlay() {
 
 function updateCompass(alpha) {
   const rot = 360 - alpha;
-  const rotDir = - alpha;
+  const rotDir = alpha -360;
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
-  direction.textContent = `Direzione: ${Math.round(rotDir)}°`;
+  direction.textContent = `Direzione: ${Math.round(rotDir)}° 2`;
 }
 
 function handleOrientation(e) {
@@ -44,15 +44,12 @@ function handleOrientation(e) {
   updateCompass(alpha);
 }
 
-function agganciaListener() {
-  if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', handleOrientation, true);
-  } else {
-    alert('Dispositivo non supportato.');
-  }
+if (window.DeviceOrientationEvent) {
+  window.addEventListener('deviceorientation', handleOrientation, true);
+} else {
+  alert('Dispositivo non supportato.');
 }
 
-agganciaListener();
 
 drawOverlay();
 
