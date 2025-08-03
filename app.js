@@ -44,16 +44,19 @@ function handleOrientation(e) {
   updateCompass(alpha);
 }
 
-if (window.DeviceOrientationEvent) {
-  await sleep(3000);
-  window.addEventListener('deviceorientation', handleOrientation, true);
-} else {
-  alert('Dispositivo non supportato.');
+async function agganciaListener() {
+  if (window.DeviceOrientationEvent) {
+    await sleep(3000);
+    window.addEventListener('deviceorientation', handleOrientation, true);
+  } else {
+    alert('Dispositivo non supportato.');
+  }
 }
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 drawOverlay();
 window.addEventListener('resize', drawOverlay);
+agganciaListener();
