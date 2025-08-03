@@ -32,16 +32,38 @@ function drawOverlay() {
 
 function updateCompass(alpha) {
   const rot = 360 - alpha;
-  const rotDir = alpha -360;
+  const rotDir = alpha - 360;
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
   direction.textContent = `Direzione: ${Math.round(rotDir)}° 2`;
 }
 
+let initialHeading = null;
+
+function getHeadingFromOrientationEvent(e) {
+  // Preferisci Safari (iOS)
+  if (e.webkitCompassHeading !== undefined) {
+    return e.webkitCompassHeading;
+  }
+
+  // Altrimenti Android fallback
+  return e.alpha ?? 0;
+}
+
 function handleOrientation(e) {
-  const alpha = e.webkitCompassHeading ?? e.alpha;
-  updateCompass(alpha);
+  //const alpha = e.webkitCompassHeading ?? e.alpha;
+  const heading = getHeadingFromOrientationEvent(e);
+
+  if (initialHeading === null) {
+    initialHeading = heading; // Salva valore iniziale al primo evento
+    console.log("Direzione iniziale memorizzata:", initialHeading);
+  }
+
+  const delta = (heading - initialHeading + 360) % 360;
+
+  console.log(`Rotazione rispetto all’inizio: ${Math.round(delta)}°`);
+  updateCompass(delta);
 }
 
 if (window.DeviceOrientationEvent) {
