@@ -65,15 +65,12 @@
             left: 50%;
             width: 0;
             height: 0;
-            border: 0 solid transparent;
-            border-bottom: 60px solid navy;
-            /* freccia triangolare */
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
-            transform-origin: center bottom;
-            z-index: 4;
-            margin-left: -12px;
-            margin-top: -60px;
+            border-top: 60px solid navy;
+            /* ⬇️ freccia verso il basso */
+            transform: translate(-50%, -50%);
+            z-index: 3;
         }
     </style>
 </head>
