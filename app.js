@@ -41,14 +41,17 @@ function updateCompass(alpha) {
 
 let initialHeading = null;
 
-function getHeadingFromOrientationEvent(e) {
-  // Preferisci Safari (iOS)
-  if (e.webkitCompassHeading !== undefined) {
-    return e.webkitCompassHeading;
-  }
+function getHeadingFromOrientationEvent(event) {
+  let heading = 0;
 
-  // Altrimenti Android fallback
-  return e.alpha ?? 0;
+  if (event.webkitCompassHeading !== undefined) {
+    // iOS Safari
+    heading = event.webkitCompassHeading;
+  } else if (event.alpha !== null) {
+    // Android e altri browser
+    heading = 360 - event.alpha;
+  }
+  return heading;
 }
 
 function handleOrientation(e) {
