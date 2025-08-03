@@ -57,6 +57,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+agganciaListener();
+
 drawOverlay();
 window.addEventListener('resize', drawOverlay);
-agganciaListener();
