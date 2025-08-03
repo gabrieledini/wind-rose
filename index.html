@@ -1,1 +1,72 @@
-test page
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rosa dei venti</title>
+    <link rel="manifest" href="manifest.json" />
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background: #f0f0f0;
+        }
+
+        #compass {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        #labels span {
+            position: absolute;
+            font-size: 0.6rem;
+            font-weight: bold;
+            color: #333;
+            transform: translate(-50%, -50%);
+        }
+
+        #needle {
+            width: 4px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: rotate(0deg);
+        }
+
+        #direction {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="compass">
+        <div id="needle"></div>
+        <div id="labels"></div>
+    </div>
+    <div id="direction">Direzione: 0°</div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('SW registrato'))
+                .catch(err => console.error('SW errore:', err));
+        }
+    </script>
+</body>
+
+</html>
