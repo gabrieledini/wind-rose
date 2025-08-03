@@ -35,15 +35,24 @@
             transform: translate(-50%, -50%);
         }
 
-        #needle {
+        #needle-red,
+        #needle-black {
             width: 4px;
             height: 100px;
-            background: red;
             position: absolute;
             top: 0;
             left: 50%;
             transform-origin: bottom center;
-            transform: rotate(0deg);
+        }
+
+        #needle-red {
+            background: red;
+            z-index: 2;
+        }
+
+        #needle-black {
+            background: green;
+            z-index: 1;
         }
 
         #direction {
@@ -54,7 +63,8 @@
 
 <body>
     <div id="compass">
-        <div id="needle"></div>
+        <div id="needle-red"></div>
+        <div id="needle-black"></div>
         <div id="labels"></div>
     </div>
     <div id="direction">Direzione: 0°</div>

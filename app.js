@@ -1,4 +1,5 @@
-const needle = document.getElementById('needle');
+const needleRed = document.getElementById('needle-red');
+const needleBlack = document.getElementById('needle-black');
 const direction = document.getElementById('direction');
 
 const compass = document.getElementById('compass');
@@ -16,7 +17,8 @@ const venti = [
 
 function updateCompass(angle) {
   const rotation = 360 - angle;
-  needle.style.transform = `rotate(${rotation}deg)`;
+  needleRed.style.transform = `rotate(${rotation}deg)`;
+  needleBlack.style.transform = `rotate(${(rotation + 180) % 360}deg)`;
   direction.textContent = `Direzione: ${Math.round(angle)}°`;
 }
 
