@@ -31,8 +31,8 @@ function drawOverlay() {
 }
 
 function updateCompass(alpha) {
-  //const rot = 360 - alpha;
-  const rot = alpha;
+  const rot = 360 - alpha;
+  //const rot = alpha;
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
@@ -46,7 +46,7 @@ function handleOrientation(e) {
 
 async function agganciaListener() {
   if (window.DeviceOrientationEvent) {
-    await sleep(3000);
+    await sleep(1000);
     window.addEventListener('deviceorientation', handleOrientation, true);
   } else {
     alert('Dispositivo non supportato.');
