@@ -1,17 +1,18 @@
 const compass = document.getElementById('compass');
 const overlay = document.getElementById('overlay-labels');
 const needleRed = document.getElementById('needle-red');
+const arrow = document.getElementById('arrow');
 const direction = document.getElementById('direction');
 
 const venti8 = [
-  {angle:   0, name: 'Tramontana'},
-  {angle:  45, name: 'Grecale'},
-  {angle:  90, name: 'Levante'},
-  {angle: 135, name: 'Scirocco'},
-  {angle: 180, name: 'Ostro'},
-  {angle: 225, name: 'Libeccio'},
-  {angle: 270, name: 'Ponente'},
-  {angle: 315, name: 'Maestrale'}
+  { angle: 0, name: 'Tramontana' },
+  { angle: 45, name: 'Grecale' },
+  { angle: 90, name: 'Levante' },
+  { angle: 135, name: 'Scirocco' },
+  { angle: 180, name: 'Ostro' },
+  { angle: 225, name: 'Libeccio' },
+  { angle: 270, name: 'Ponente' },
+  { angle: 315, name: 'Maestrale' }
 ];
 
 function drawOverlay() {
@@ -33,6 +34,7 @@ function updateCompass(alpha) {
   const rot = 360 - alpha;
   needleRed.style.transform = `rotate(${rot}deg)`;
   overlay.style.transform = `rotate(${rot}deg)`;
+  arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
   direction.textContent = `Direzione: ${Math.round(alpha)}°`;
 }
 

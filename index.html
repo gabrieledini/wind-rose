@@ -58,12 +58,30 @@
             margin-top: 10px;
             font-size: 1rem;
         }
+
+        #arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 0 solid transparent;
+            border-bottom: 60px solid navy;
+            /* freccia triangolare */
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            transform-origin: center bottom;
+            z-index: 4;
+            margin-left: -12px;
+            margin-top: -60px;
+        }
     </style>
 </head>
 
 <body>
     <div id="compass">
         <div id="overlay-labels"></div>
+        <div id="arrow"></div>
         <div id="needle-red"></div>
     </div>
     <div id="direction">Direzione: 0°</div>
