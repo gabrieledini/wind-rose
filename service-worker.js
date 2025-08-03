@@ -1,4 +1,3 @@
-/*
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open('venti-cache-v1').then(cache => {
@@ -19,4 +18,3 @@ self.addEventListener('fetch', event => {
     })
   );
 });
-*/
