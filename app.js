@@ -1,13 +1,12 @@
+const compass = document.getElementById('compass');
+const overlay = document.getElementById('overlay-labels');
 const needleRed = document.getElementById('needle-red');
-const needleBlack = document.getElementById('needle-black');
 const direction = document.getElementById('direction');
 
-const compass = document.getElementById('compass');
-const labels = document.getElementById('labels');
-const venti = [
-  {angle: 0, name: 'Tramontana'},
-  {angle: 45, name: 'Grecale'},
-  {angle: 90, name: 'Levante'},
+const venti8 = [
+  {angle:   0, name: 'Tramontana'},
+  {angle:  45, name: 'Grecale'},
+  {angle:  90, name: 'Levante'},
   {angle: 135, name: 'Scirocco'},
   {angle: 180, name: 'Ostro'},
   {angle: 225, name: 'Libeccio'},
@@ -15,40 +14,38 @@ const venti = [
   {angle: 315, name: 'Maestrale'}
 ];
 
-function updateCompass(angle) {
-  const rotation = 360 - angle;
-  needleRed.style.transform = `rotate(${rotation}deg)`;
-  needleBlack.style.transform = `rotate(${(rotation + 180) % 360}deg)`;
-  direction.textContent = `Direzione: ${Math.round(angle)}°`;
-}
-
-function handleOrientation(event) {
-  if (event.absolute || event.webkitCompassHeading) {
-    const heading = event.webkitCompassHeading || event.alpha;
-    updateCompass(heading);
-  } else {
-    updateCompass(event.alpha);
-  }
-}
-
-function createLabels() {
+function drawOverlay() {
+  overlay.innerHTML = '';
   const r = compass.clientWidth / 2;
-  venti.forEach(v => {
+  venti8.forEach(v => {
+    const rad = (v.angle - 90) * Math.PI / 180;
+    const x = r + Math.cos(rad) * (r - 40);
+    const y = r + Math.sin(rad) * (r - 40);
     const span = document.createElement('span');
     span.textContent = v.name;
-    const rad = (v.angle - 90) * Math.PI / 180;
-    const x = r + Math.cos(rad) * (r - 20);
-    const y = r + Math.sin(rad) * (r - 20);
     span.style.left = `${x}px`;
     span.style.top = `${y}px`;
-    labels.appendChild(span);
+    overlay.appendChild(span);
   });
+}
+
+function updateCompass(alpha) {
+  const rot = 360 - alpha;
+  needleRed.style.transform = `rotate(${rot}deg)`;
+  overlay.style.transform = `rotate(${rot}deg)`;
+  direction.textContent = `Direzione: ${Math.round(alpha)}°`;
+}
+
+function handleOrientation(e) {
+  const alpha = e.webkitCompassHeading ?? e.alpha;
+  updateCompass(alpha);
 }
 
 if (window.DeviceOrientationEvent) {
   window.addEventListener('deviceorientation', handleOrientation, true);
 } else {
-  alert('Il tuo dispositivo non supporta la bussola.');
+  alert('Dispositivo non supportato.');
 }
 
-createLabels();
+drawOverlay();
+window.addEventListener('resize', drawOverlay);
