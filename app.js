@@ -3,6 +3,7 @@ const overlay = document.getElementById('overlay-labels');
 const needleRed = document.getElementById('needle-red');
 const arrow = document.getElementById('arrow');
 const direction = document.getElementById('direction');
+const initialAngle = document.getElementById('initial-angle');
 
 const venti8 = [
   { angle: 0, name: 'Tramontana' },
@@ -36,7 +37,7 @@ function updateCompass(alpha) {
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
-  direction.textContent = `Direzione: ${Math.round(rot)}° v3`;
+  direction.textContent = `Direzione: ${Math.round(rot)}°`;
 }
 
 let initialHeading = null;
@@ -61,6 +62,7 @@ function handleOrientation(e) {
   if (initialHeading === null) {
     initialHeading = heading; // Salva valore iniziale al primo evento
     console.log("Direzione iniziale memorizzata:", initialHeading);
+    initialAngle.textContent = `Angolo iniziale: ${Math.round(initialHeading)}° v4`;
   }
 
   const delta = (heading - initialHeading + 360) % 360;
