@@ -32,11 +32,11 @@ function drawOverlay() {
 
 function updateCompass(alpha) {
   const rot = 360 - alpha;
-  const rotDir = alpha - 360;
+  //const rotDir = alpha - 360;
   needleRed.style.transform = `rotate(${rot}deg)`;
   //overlay.style.transform = `rotate(${rot}deg)`; // ghiera solidale
   //arrow.style.transform = `rotate(${rot}deg)`; // freccia solidale
-  direction.textContent = `Direzione: ${Math.round(rotDir)}° 2`;
+  direction.textContent = `Direzione: ${Math.round(rot)}° v3`;
 }
 
 let initialHeading = null;
