@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>Rosa dei venti</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="manifest.json?v=3" />
     <style>
         body {
             background: #f4f1e0;
@@ -89,11 +89,11 @@
 
     <script src="app.js"></script>
     <script>
-        if ('serviceWorker' in navigator) {
+        /*if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
                 .then(() => console.log('SW registrato'))
                 .catch(err => console.error('SW errore:', err));
-        }
+        }*/
     </script>
 </body>
 
