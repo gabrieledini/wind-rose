@@ -62,7 +62,7 @@ function handleOrientation(e) {
   if (initialHeading === null) {
     initialHeading = heading; // Salva valore iniziale al primo evento
     console.log("Direzione iniziale memorizzata:", initialHeading);
-    initialAngle.textContent = `Angolo iniziale: ${Math.round(initialHeading)}° v4`;
+    initialAngle.textContent = `Angolo iniziale: ${Math.round(initialHeading)}°`;
   }
 
   const delta = (heading - initialHeading + 360) % 360;
