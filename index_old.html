@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Rosa dei venti</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json?v=4" />
+    <style>
+        body {
+            background: #f4f1e0;
+            font-family: "Georgia", serif;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #compass {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 40px auto;
+            border: 8px solid #a67c52;
+            border-radius: 50%;
+            background: radial-gradient(#fdfcf8, #e0d6b9);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #overlay-labels {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        #overlay-labels span {
+            position: absolute;
+            font-size: 0.75rem;
+            color: #5c4331;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+            transform: translate(-50%, -50%);
+        }
+
+        #needle-red {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 4px;
+            height: 130px;
+            background: red;
+            transform-origin: bottom center;
+            z-index: 2;
+        }
+
+        #direction {
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        #arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 60px solid navy;
+            /* ⬇️ freccia verso il basso */
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="compass">
+        <div id="overlay-labels"></div>
+        <!--div id="arrow"></div-->
+        <div id="needle-red"></div>
+    </div>
+    <div id="direction">Direzione: 0°</div>
+    <div id="initial-angle">Angolo iniziale: 0°</div>
+
+    <script src="app.js"></script>
+    <script>
+        /*if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('SW registrato'))
+                .catch(err => console.error('SW errore:', err));
+        }*/
+    </script>
+</body>
+
+</html>
