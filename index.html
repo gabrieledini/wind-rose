@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bussola Smartphone</title>
+    <title>Rosa dei venti</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +15,7 @@
             margin: 0;
             color: white;
         }
-        
+
         .compass-container {
             max-width: 400px;
             margin: 0 auto;
@@ -24,7 +25,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        
+
         .compass {
             width: 200px;
             height: 200px;
@@ -35,7 +36,7 @@
             background: radial-gradient(circle, #fff 0%, #e0e0e0 100%);
             transition: transform 0.3s ease;
         }
-        
+
         .needle {
             position: absolute;
             top: 50%;
@@ -47,7 +48,7 @@
             transform-origin: 50% 50%;
             transition: transform 0.3s ease;
         }
-        
+
         .needle::before {
             content: '';
             position: absolute;
@@ -58,7 +59,7 @@
             background: #ff4444;
             border-radius: 2px 2px 0 0;
         }
-        
+
         .needle::after {
             content: '';
             position: absolute;
@@ -69,7 +70,7 @@
             background: transparent;
             border-radius: 0 0 2px 2px;
         }
-        
+
         .compass-directions {
             position: absolute;
             top: 0;
@@ -78,7 +79,7 @@
             bottom: 0;
             pointer-events: none;
         }
-        
+
         .direction {
             position: absolute;
             font-weight: bold;
@@ -90,24 +91,56 @@
             align-items: center;
             justify-content: center;
         }
-        
-        .north { top: -5px; left: 50%; transform: translateX(-50%); color: #ff4444; font-size: 14px; }
-        .nne { top: 8px; right: 22px; }
-        .ne { top: 22px; right: 8px; }
-        .ene { top: 40px; right: -5px; }
-        .east { right: -10px; top: 50%; transform: translateY(-50%); font-size: 14px; }
-        .ese { bottom: 40px; right: -5px; }
-        .se { bottom: 22px; right: 8px; }
-        .sse { bottom: 8px; right: 22px; }
-        .south { bottom: -10px; left: 50%; transform: translateX(-50%); font-size: 14px; }
-        .ssw { bottom: 8px; left: 22px; }
-        .sw { bottom: 22px; left: 8px; }
-        .wsw { bottom: 40px; left: -5px; }
-        .west { left: -10px; top: 50%; transform: translateY(-50%); font-size: 14px; }
-        .wnw { top: 40px; left: -5px; }
-        .nw { top: 22px; left: 8px; }
-        .nnw { top: 8px; left: 22px; }
-        
+
+        .north {
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff4444;
+            font-size: 14px;
+        }
+
+        .ne {
+            top: 22px;
+            right: 8px;
+        }
+
+        .east {
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        .se {
+            bottom: 22px;
+            right: 8px;
+        }
+
+        .south {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+        }
+
+        .sw {
+            bottom: 22px;
+            left: 8px;
+        }
+
+        .west {
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        .nw {
+            top: 22px;
+            left: 8px;
+        }
+
         .info-panel {
             margin-top: 20px;
             padding: 15px;
@@ -115,28 +148,28 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .angle-display {
             font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
         }
-        
+
         .status {
             margin: 10px 0;
             padding: 5px;
             border-radius: 5px;
             font-weight: bold;
         }
-        
+
         .status.active {
             background-color: rgba(76, 175, 80, 0.3);
         }
-        
+
         .status.inactive {
             background-color: rgba(244, 67, 54, 0.3);
         }
-        
+
         .calibration-btn {
             background: #ff4444;
             color: white;
@@ -148,11 +181,11 @@
             margin: 10px;
             transition: background 0.3s ease;
         }
-        
+
         .calibration-btn:hover {
             background: #ff6666;
         }
-        
+
         .accuracy-bar {
             width: 100%;
             height: 8px;
@@ -161,7 +194,7 @@
             overflow: hidden;
             margin: 10px 0;
         }
-        
+
         .accuracy-fill {
             height: 100%;
             background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44);
@@ -170,44 +203,37 @@
         }
     </style>
 </head>
+
 <body>
     <div class="compass-container">
-        <h1>🧭 Bussola Digitale</h1>
-        
+        <h1>Rosa dei venti</h1>
+
         <div class="compass" id="compass">
             <div class="needle" id="needle"></div>
             <div class="compass-directions">
-                <div class="direction north">N</div>
-                <div class="direction nne">NNE</div>
-                <div class="direction ne">NE</div>
-                <div class="direction ene">ENE</div>
-                <div class="direction east">E</div>
-                <div class="direction ese">ESE</div>
-                <div class="direction se">SE</div>
-                <div class="direction sse">SSE</div>
-                <div class="direction south">S</div>
-                <div class="direction ssw">SSW</div>
-                <div class="direction sw">SW</div>
-                <div class="direction wsw">WSW</div>
-                <div class="direction west">W</div>
-                <div class="direction wnw">WNW</div>
-                <div class="direction nw">NW</div>
-                <div class="direction nnw">NNW</div>
+                <div class="direction north">N Tramontana</div>
+                <div class="direction ne">NE Grecale</div>
+                <div class="direction east">E Levante</div>
+                <div class="direction se">SE Scirocco</div>
+                <div class="direction south">S Ostro</div>
+                <div class="direction sw">SW Libeccio</div>
+                <div class="direction west">W Ponente</div>
+                <div class="direction nw">NW Maestrale</div>
             </div>
         </div>
-        
+
         <div class="info-panel">
             <div class="angle-display" id="angleDisplay">0°</div>
             <div id="directionText">Nord</div>
-            
+
             <div class="status" id="status">Caricamento...</div>
-            
+
             <div>Precisione:</div>
             <div class="accuracy-bar">
                 <div class="accuracy-fill" id="accuracyFill" style="width: 0%"></div>
             </div>
             <div id="accuracyText">Sconosciuta</div>
-            
+
             <button class="calibration-btn" onclick="startCalibration()">
                 Calibra Bussola
             </button>
@@ -217,7 +243,7 @@
     <script>
         let currentHeading = 0;
         let isCalibrating = false;
-        
+
         // Elementi DOM
         const needle = document.getElementById('needle');
         const compass = document.getElementById('compass');
@@ -226,34 +252,34 @@
         const status = document.getElementById('status');
         const accuracyFill = document.getElementById('accuracyFill');
         const accuracyText = document.getElementById('accuracyText');
-        
+
         // Funzione per convertire l'angolo in direzione cardinale
         function getCardinalDirection(heading) {
             const directions = [
-                'Nord', 'Nord-Nord-Est', 'Nord-Est', 'Est-Nord-Est',
-                'Est', 'Est-Sud-Est', 'Sud-Est', 'Sud-Sud-Est',
-                'Sud', 'Sud-Sud-Ovest', 'Sud-Ovest', 'Ovest-Sud-Ovest',
-                'Ovest', 'Ovest-Nord-Ovest', 'Nord-Ovest', 'Nord-Nord-Ovest'
+                'Nord', 'Nord-Est',
+                'Est', , 'Sud-Est',
+                'Sud', 'Sud-Ovest',
+                'Ovest', 'Nord-Ovest'
             ];
-            const index = Math.round(heading / 22.5) % 16;
+            const index = Math.round(heading / 45) % 8; // 8 venti, uno ogni 45 gradi
             return directions[index];
         }
-        
+
         // Funzione per aggiornare la visualizzazione
         function updateCompass(heading, accuracy) {
             // Normalizza l'angolo (0-360)
             const normalizedHeading = ((heading % 360) + 360) % 360;
             currentHeading = normalizedHeading;
-            
+
             // Ruota l'ago della bussola
             needle.style.transform = `rotate(${normalizedHeading}deg)`;
-            
+
             // Aggiorna il display dell'angolo
             angleDisplay.textContent = `${Math.round(normalizedHeading)}°`;
-            
+
             // Aggiorna la direzione cardinale
             directionText.textContent = getCardinalDirection(normalizedHeading);
-            
+
             // Aggiorna la precisione se disponibile
             if (accuracy !== null && accuracy !== undefined) {
                 const accuracyPercentage = Math.max(0, Math.min(100, (1 - accuracy / 180) * 100));
@@ -261,11 +287,11 @@
                 accuracyText.textContent = `±${Math.round(accuracy)}°`;
             }
         }
-        
+
         // Handler per DeviceOrientationEvent (iOS Safari e alcuni Android)
         function handleDeviceOrientation(event) {
             let heading = 0;
-            
+
             if (event.webkitCompassHeading !== undefined) {
                 // iOS Safari
                 heading = event.webkitCompassHeading;
@@ -273,43 +299,43 @@
                 // Android e altri browser
                 heading = 360 - event.alpha;
             }
-            
+
             updateCompass(heading, event.accuracy || null);
             updateStatus('Bussola attiva', true);
         }
-        
+
         // Handler per DeviceOrientationAbsoluteEvent (Chrome su Android)
         function handleAbsoluteOrientation(event) {
             if (event.alpha !== null) {
                 const heading = 360 - event.alpha;
                 updateCompass(heading, event.accuracy || null);
-                updateStatus('Bussola attiva (assoluta)', true);
+                updateStatus('Rosa attiva (assoluta)', true);
             }
         }
-        
+
         // Funzione per aggiornare lo stato
         function updateStatus(message, active) {
             status.textContent = message;
             status.className = `status ${active ? 'active' : 'inactive'}`;
         }
-        
+
         // Funzione di calibrazione
         function startCalibration() {
             if (isCalibrating) return;
-            
+
             isCalibrating = true;
             updateStatus('Calibrazione in corso...', false);
-            
+
             // Anima la bussola durante la calibrazione
             compass.style.animation = 'spin 2s linear';
-            
+
             setTimeout(() => {
                 compass.style.animation = '';
                 isCalibrating = false;
                 updateStatus('Calibrazione completata', true);
             }, 2000);
         }
-        
+
         // Funzione per richiedere i permessi (iOS 13+)
         async function requestPermissions() {
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -329,26 +355,26 @@
                 initializeCompass();
             }
         }
-        
+
         // Funzione per inizializzare la bussola
         function initializeCompass() {
             let orientationSupported = false;
-            
+
             // Prova DeviceOrientationAbsoluteEvent prima (più preciso)
             if ('DeviceOrientationAbsoluteEvent' in window) {
                 window.addEventListener('deviceorientationabsolute', handleAbsoluteOrientation);
                 orientationSupported = true;
             }
-            
+
             // Fallback su DeviceOrientationEvent
             if ('DeviceOrientationEvent' in window) {
                 window.addEventListener('deviceorientation', handleDeviceOrientation);
                 orientationSupported = true;
             }
-            
+
             if (orientationSupported) {
                 updateStatus('In attesa di dati...', false);
-                
+
                 // Timeout per rilevare se i dati arrivano
                 setTimeout(() => {
                     if (status.textContent === 'In attesa di dati...') {
@@ -359,14 +385,14 @@
                 updateStatus('Bussola non supportata', false);
             }
         }
-        
+
         // Verifica supporto e inizializza
         function checkSupport() {
             if (!('DeviceOrientationEvent' in window) && !('DeviceOrientationAbsoluteEvent' in window)) {
                 updateStatus('Device Orientation non supportato', false);
                 return;
             }
-            
+
             // Verifica se è necessario richiedere permessi
             if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 // iOS 13+ richiede permessi espliciti
@@ -374,16 +400,16 @@
                 button.textContent = 'Abilita Bussola';
                 button.className = 'calibration-btn';
                 button.onclick = requestPermissions;
-                
+
                 const container = document.querySelector('.info-panel');
                 container.appendChild(button);
-                
+
                 updateStatus('Tocca per abilitare la bussola', false);
             } else {
                 requestPermissions();
             }
         }
-        
+
         // CSS per l'animazione di calibrazione
         const style = document.createElement('style');
         style.textContent = `
@@ -393,21 +419,22 @@
             }
         `;
         document.head.appendChild(style);
-        
+
         // Inizializza quando la pagina è caricata
         document.addEventListener('DOMContentLoaded', checkSupport);
-        
+
         // Log degli eventi per debug
         window.addEventListener('deviceorientation', (e) => {
             console.log('DeviceOrientation:', {
                 alpha: e.alpha,
-                beta: e.beta,  
+                beta: e.beta,
                 gamma: e.gamma,
                 webkitCompassHeading: e.webkitCompassHeading,
                 accuracy: e.accuracy
             });
         });
-        
+
     </script>
 </body>
+
 </html>
