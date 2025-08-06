@@ -3,7 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Rosa dei venti</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json?v=5" />
+
     <title>Rosa dei venti</title>
     <style>
         body {
@@ -44,7 +51,7 @@
             width: 4px;
             height: 80px;
             margin-left: -2px;
-            margin-top: -40px;
+            margin-top: -80px;
             transform-origin: 50% 50%;
             transition: transform 0.3s ease;
         }
@@ -55,7 +62,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 50%;
+            height: 100%;
             background: #ff4444;
             border-radius: 2px 2px 0 0;
         }
@@ -228,11 +235,11 @@
 
             <div class="status" id="status">Caricamento...</div>
 
-            <div>Precisione:</div>
+            <!--div>Precisione:</div>
             <div class="accuracy-bar">
                 <div class="accuracy-fill" id="accuracyFill" style="width: 0%"></div>
             </div>
-            <div id="accuracyText">Sconosciuta</div>
+            <div id="accuracyText">Sconosciuta</div-->
 
             <button class="calibration-btn" onclick="startCalibration()">
                 Calibra Bussola
@@ -256,10 +263,10 @@
         // Funzione per convertire l'angolo in direzione cardinale
         function getCardinalDirection(heading) {
             const directions = [
-                'Nord', 'Nord-Est',
-                'Est', , 'Sud-Est',
-                'Sud', 'Sud-Ovest',
-                'Ovest', 'Nord-Ovest'
+                'Nord Tramontana', 'Nord-Est Grecale',
+                'Est Levante', 'Sud-Est Scirocco',
+                'Sud ostro', 'Sud-Ovest Libeccio',
+                'Ovest Ponente', 'Nord-Ovest Maestrale'
             ];
             const index = Math.round(heading / 45) % 8; // 8 venti, uno ogni 45 gradi
             return directions[index];
